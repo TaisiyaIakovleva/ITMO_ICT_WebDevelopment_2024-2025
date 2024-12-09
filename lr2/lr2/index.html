@@ -731,7 +731,7 @@
 <pre><code class="language-python">def flight_list(request):
     search_query = request.GET.get('search', '')
 
-    flights = Flight.objects.all()
+    flights = Flight.objects.all().order_by('departure_time')
 
     if search_query:
         flights = flights.filter(
@@ -739,14 +739,14 @@
             Q(airline__icontains=search_query)
         )
 
-    paginator = Paginator(flights, 3)
+    paginator = Paginator(flights, 3) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     return render(request, 'flights.html', {
-        'page_obj': page_obj,
-        'search_query': search_query
-    })
+        'page_obj': page_obj, 
+        'search_query': search_query 
+    }) 
 </code></pre>
 <p>И пагинация</p>
 <pre><code class="language-html">     &lt;div class=&quot;pagination&quot;&gt;
