@@ -456,7 +456,7 @@
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Хранение информации о рейсах
+      Вход
     </span>
   </a>
   
@@ -464,6 +464,15 @@
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Хранение информации о рейсах
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       Функционал пассажира
     </span>
@@ -473,7 +482,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       Регистрация на рейс
     </span>
@@ -482,7 +491,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       Отзыв на рейс
     </span>
@@ -573,7 +582,7 @@
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Хранение информации о рейсах
+      Вход
     </span>
   </a>
   
@@ -581,6 +590,15 @@
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Хранение информации о рейсах
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       Функционал пассажира
     </span>
@@ -590,7 +608,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       Регистрация на рейс
     </span>
@@ -599,7 +617,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       Отзыв на рейс
     </span>
@@ -657,7 +675,7 @@
 </ul>
 <h2 id="_3">Реализация функционала</h2>
 <h3 id="_4">Регистрация новых пользователей</h3>
-<p>http://127.0.0.1:8000/register/</p>
+<p><a href="http://127.0.0.1:8000/register/">http://127.0.0.1:8000/register/</a></p>
 <p>Реализована регистрация пользователей через форму с использованием модели User (расширение AbstractUser). Форма регистрации (UserForm) позволяет пользователю указать логин, пароль, паспорт, дату рождения и роль (Администратор или Пассажир). После регистрации пользователь может войти на сайт.</p>
 <pre><code class="language-python">class UserForm(UserCreationForm):
     passport = forms.CharField(max_length=20, required=False, label='Номер паспорта')
@@ -685,9 +703,10 @@
         if commit:
             user.save()
 </code></pre>
-<h3 id="_5">Хранение информации о рейсах</h3>
+<h3 id="_5">Вход</h3>
+<h3 id="_6">Хранение информации о рейсах</h3>
 <p>На главной странице находится таблица с информацей о рейсах, где можно увидеть номер рейса, название авиакомпании, дату и время вылета, дату и время прилета, тип рейса (прилет/отлет) и номер гейта.</p>
-<p><img alt="flights" src="ITMO_ICT_WebDevelopment_2024-2025/students/k3343/Iakovleva Taisiia/lr1/my-documentation/docs/lr2/img/flights.png" /></p>
+<p><img alt="flights" src="../img/flights.png" /></p>
 <pre><code class="language-python">class Flight(models.Model):
     flight_number = models.CharField(max_length=10, unique=True) 
     airline = models.CharField(max_length=50) 
@@ -696,10 +715,59 @@
     flight_type = models.CharField(max_length=10, choices=[('departure', 'Отлет'), ('arrival', 'Прилет')]) 
     gate_number = models.CharField(max_length=10)   
 </code></pre>
-<h3 id="_6">Функционал пассажира</h3>
-<h4 id="_7">Регистрация на рейс</h4>
+<p>Реализована возможность поиска рейса по номеру или авиакомпании</p>
+<pre><code class="language-html">    &lt;form method=&quot;get&quot; action=&quot;&quot; class=&quot;search-form&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;search&quot; placeholder=&quot;Поиск по номеру рейса или авиакомпании&quot; 
+               value=&quot;{{ search_query }}&quot; style=&quot;padding: 10px; width: 300px;&quot;&gt;
+        &lt;button type=&quot;submit&quot; style=&quot;padding: 10px;&quot;&gt;Поиск&lt;/button&gt;
+    &lt;/form&gt;   
+</code></pre>
+<pre><code class="language-python">class FlightListView(ListView):
+    model = Flight
+    template_name = 'flights.html'
+    context_object_name = 'flights'
+    paginate_by = 3
+    def get_queryset(self):
+        queryset = Flight.objects.all()
+
+        search_query = self.request.GET.get('search', '')
+
+        if search_query:
+            queryset = queryset.filter(
+                Q(flight_number__icontains=search_query) |
+                Q(airline__icontains=search_query) 
+            )
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('search', '')
+        return context
+</code></pre>
+<p>И пагинация</p>
+<pre><code class="language-html">     &lt;div class=&quot;pagination&quot;&gt;
+        &lt;span class=&quot;step-links&quot;&gt;
+            {% if page_obj.has_previous %}
+                &lt;a href=&quot;?{% if request.GET.search %}search={{ request.GET.search }}&amp;{% endif %}{% if request.GET.grade %}grade={{ request.GET.grade }}&amp;{% endif %}page=1&quot;&gt;Первая&lt;/a&gt;
+                &lt;a href=&quot;?{% if request.GET.search %}search={{ request.GET.search }}&amp;{% endif %}{% if request.GET.grade %}grade={{ request.GET.grade }}&amp;{% endif %}page={{ page_obj.previous_page_number }}&quot;&gt;Предыдущая&lt;/a&gt;
+            {% endif %}
+
+            &lt;span class=&quot;current&quot;&gt;
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            &lt;/span&gt;
+
+            {% if page_obj.has_next %}
+                &lt;a href=&quot;?{% if request.GET.search %}search={{ request.GET.search }}&amp;{% endif %}{% if request.GET.grade %}grade={{ request.GET.grade }}&amp;{% endif %}page={{ page_obj.next_page_number }}&quot;&gt;Следующая&lt;/a&gt;
+                &lt;a href=&quot;?{% if request.GET.search %}search={{ request.GET.search }}&amp;{% endif %}{% if request.GET.grade %}grade={{ request.GET.grade }}&amp;{% endif %}page={{ page_obj.paginator.num_pages }}&quot;&gt;Последняя&lt;/a&gt;
+            {% endif %}
+        &lt;/span&gt;
+    &lt;/div&gt;
+</code></pre>
+<h3 id="_7">Функционал пассажира</h3>
+<h4 id="_8">Регистрация на рейс</h4>
 <p>Для регистрации выбирает необходим рейс, вводит номер билета и номер места. Все регистрации пользователя можно посмотреть на отдельной странице. Регистрацию можно отменить или отредактировать.</p>
-<h4 id="_8">Отзыв на рейс</h4>
+<h4 id="_9">Отзыв на рейс</h4>
 <p>Пользователи могут оставлять отзывы к рейсам. Каждый отзыв включает: дату рейса, текст комментария, рейтинг от 1 до 10, информацию о комментаторе.</p>
 <pre><code class="language-python">class ReviewForm(forms.ModelForm):
     class Meta:
