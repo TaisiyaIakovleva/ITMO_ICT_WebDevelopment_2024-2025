@@ -728,28 +728,25 @@
         &lt;button type=&quot;submit&quot; style=&quot;padding: 10px;&quot;&gt;Поиск&lt;/button&gt;
     &lt;/form&gt;   
 </code></pre>
-<pre><code class="language-python">class FlightListView(ListView):
-    model = Flight
-    template_name = 'flights.html'
-    context_object_name = 'flights'
-    paginate_by = 3
-    def get_queryset(self):
-        queryset = Flight.objects.all()
+<pre><code class="language-python">def flight_list(request):
+    search_query = request.GET.get('search', '')
 
-        search_query = self.request.GET.get('search', '')
+    flights = Flight.objects.all()
 
-        if search_query:
-            queryset = queryset.filter(
-                Q(flight_number__icontains=search_query) |
-                Q(airline__icontains=search_query) 
-            )
+    if search_query:
+        flights = flights.filter(
+            Q(flight_number__icontains=search_query) |
+            Q(airline__icontains=search_query)
+        )
 
-        return queryset
+    paginator = Paginator(flights, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['search_query'] = self.request.GET.get('search', '')
-        return context
+    return render(request, 'flights.html', {
+        'page_obj': page_obj,
+        'search_query': search_query
+    })
 </code></pre>
 <p>И пагинация</p>
 <pre><code class="language-html">     &lt;div class=&quot;pagination&quot;&gt;
@@ -790,6 +787,16 @@
 <h4 id="_11">Просмотр списка пассажиров на рейс</h4>
 <p>Администратор может просмотреть полный список пассажиров на каждый из ресйсов. Выдается информация: имя, номер паспорта, номер билета и места. </p>
 <p><img alt="passengers" src="../img/passengers.png" /></p>
+<pre><code class="language-python">def passenger_list(request, flight_id):
+    flight = Flight.objects.get(id=flight_id) 
+
+    passengers = Reservation.objects.filter(flight=flight).select_related('user')
+
+    return render(request, 'passenger_list.html', {
+        'passengers': passengers,
+        'flight': flight
+    })        
+</code></pre>
 
 
 
