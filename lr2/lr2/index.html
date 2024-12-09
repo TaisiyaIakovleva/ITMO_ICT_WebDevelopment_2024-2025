@@ -453,45 +453,45 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Запуск
+      Хранение информации о рейсах
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Код
+      Функционал пассажира
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Код">
+    <nav class="md-nav" aria-label="Функционал пассажира">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#clientpy" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      client.py
+      Регистрация на рейс
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#serverpy" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      server.py
+      Отзыв на рейс
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -570,45 +570,45 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Запуск
+      Хранение информации о рейсах
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Код
+      Функционал пассажира
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Код">
+    <nav class="md-nav" aria-label="Функционал пассажира">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#clientpy" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      client.py
+      Регистрация на рейс
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#serverpy" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      server.py
+      Отзыв на рейс
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -634,8 +634,8 @@
 
 <h1 id="_1">Табло отображения информации об авиаперелетах.</h1>
 <p>Цель: овладеть практическими навыками и умениями реализации web-сервисов
-средствами Django 2.2.
-Оборудование: компьютерный класс.
+средствами Django 2.2.</p>
+<p>Оборудование: компьютерный класс.
 Программное обеспечение: Python 3.6+, Django 3, PostgreSQL <em>.
 Практическое задание:
 Реализовать сайт используя фреймворк Django 3 и СУБД PostgreSQL </em>, в
@@ -659,54 +659,56 @@
 <h3 id="_4">Регистрация новых пользователей</h3>
 <p>http://127.0.0.1:8000/register/</p>
 <p>Реализована регистрация пользователей через форму с использованием модели User (расширение AbstractUser). Форма регистрации (UserForm) позволяет пользователю указать логин, пароль, паспорт, дату рождения и роль (Администратор или Пассажир). После регистрации пользователь может войти на сайт.</p>
-<h2 id="_5">Запуск</h2>
-<ol>
-<li>Запуск сервера</li>
-</ol>
-<pre><code class="language-python">python3 server.py
+<pre><code class="language-python">class UserForm(UserCreationForm):
+    passport = forms.CharField(max_length=20, required=False, label='Номер паспорта')
+    birth_date = forms.DateField(
+        required=False,
+        label='Дата рождения',
+        widget=forms.SelectDateWidget(years=range(1900, 2025))
+    )
+    user_type = forms.ChoiceField(
+        choices=User.USER_TYPE_CHOICES,
+        required=True,
+        label='Тип пользователя',
+        widget=forms.Select
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'passport', 'birth_date', 'user_type')
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.passport = self.cleaned_data.get('passport')
+        user.birth_date = self.cleaned_data.get('birth_date')
+        user.user_type = self.cleaned_data.get('user_type')
+        if commit:
+            user.save()
 </code></pre>
-<ol>
-<li>Запуск клиента</li>
-</ol>
-<pre><code class="language-python">python3 client.py
+<h3 id="_5">Хранение информации о рейсах</h3>
+<p>На главной странице находится таблица с информацей о рейсах, где можно увидеть номер рейса, название авиакомпании, дату и время вылета, дату и время прилета, тип рейса (прилет/отлет) и номер гейта.</p>
+<p><img alt="" src="/Users/Taisia1/Documents/ITMO/web-программирование/ITMO_ICT_WebDevelopment_2024-2025/students/k3343/Iakovleva Taisiia/lr1/my-documentation/docs/lr2/img/flights.png" /></p>
+<pre><code class="language-python">class Flight(models.Model):
+    flight_number = models.CharField(max_length=10, unique=True) 
+    airline = models.CharField(max_length=50) 
+    departure_time = models.DateTimeField()  
+    arrival_time = models.DateTimeField() 
+    flight_type = models.CharField(max_length=10, choices=[('departure', 'Отлет'), ('arrival', 'Прилет')]) 
+    gate_number = models.CharField(max_length=10)   
 </code></pre>
-<h2 id="_6">Код</h2>
-<h3 id="clientpy">client.py</h3>
-<pre><code class="language-python">import socket
-
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-client_socket.connect(('localhost', 8080))
-
-client_socket.sendall(f'Hello, server'.encode('utf-8'))
-
-response = client_socket.recv(1024)
-print(f'Ответ от сервера: {response.decode()}')
-
-client_socket.close()
-</code></pre>
-<h3 id="serverpy">server.py</h3>
-<pre><code class="language-python">import socket
-
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-server_socket.bind(('localhost', 8080))
-
-server_socket.listen(1)
-print(&quot;Сервер запущен на порту 8080...&quot;)
-
-while True:
-
-    client_connection, client_address = server_socket.accept()
-    print(f'Подключение от {client_address}')
-
-    request = client_connection.recv(1024).decode()
-    print(f'Запрос от клиента: {request}')
-
-    response = 'Hello, client'
-    client_connection.sendall(response.encode())
-
-    client_connection.close()
+<h3 id="_6">Функционал пассажира</h3>
+<h4 id="_7">Регистрация на рейс</h4>
+<p>Для регистрации выбирает необходим рейс, вводит номер билета и номер места. Все регистрации пользователя можно посмотреть на отдельной странице. Регистрацию можно отменить или отредактировать.</p>
+<h4 id="_8">Отзыв на рейс</h4>
+<p>Пользователи могут оставлять отзывы к рейсам. Каждый отзыв включает: дату рейса, текст комментария, рейтинг от 1 до 10, информацию о комментаторе.</p>
+<pre><code class="language-python">class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['text', 'rating'] 
+        widgets = {
+            'text': forms.Textarea(attrs={'placeholder': 'Введите ваш отзыв'}),
+            'rating': forms.Select(choices=[(i, str(i)) for i in range(1, 11)]), 
+        }
 </code></pre>
 
 
