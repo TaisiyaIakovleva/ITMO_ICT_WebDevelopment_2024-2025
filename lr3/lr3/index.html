@@ -466,8 +466,44 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#employees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Employees
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsible-employees-cruds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responsible Employees CRUD's
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#employees-contracts-cruds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Employees contracts CRUD's
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth
+    </span>
+  </a>
   
 </li>
         
@@ -606,8 +642,44 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#employees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Employees
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#responsible-employees-cruds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responsible Employees CRUD's
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#employees-contracts-cruds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Employees contracts CRUD's
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth
+    </span>
+  </a>
   
 </li>
         
@@ -719,362 +791,342 @@
 <p>20 <strong>Изменить информацию о диете</strong></p>
 <pre><code>PATCH /manufactory/diets/{id}
 </code></pre>
-<p>{
-  "description": "newDiet",
-  "season": "Winter"
-}</p>
-<pre><code>id = 11
-
-Request URL ```http://127.0.0.1:8000/manufactory/diets/11```
-
+<pre><code>{
+  &quot;description&quot;: &quot;newDiet&quot;,
+  &quot;season&quot;: &quot;Winter&quot;
+}
 </code></pre>
-<p>{
-  "id": 11,
-  "description": "newDiet",
-  "season": "Winter"
-}</p>
-<pre><code>
-21 **Удалить диету**
+<p>id = 11</p>
+<p>Request URL <code>http://127.0.0.1:8000/manufactory/diets/11</code></p>
+<pre><code>{
+  &quot;id&quot;: 11,
+  &quot;description&quot;: &quot;newDiet&quot;,
+  &quot;season&quot;: &quot;Winter&quot;
+}
 </code></pre>
-<p>DELETE /manufactory/diets/{id}</p>
-<pre><code>22 **Производительность по породам**
+<p>21 <strong>Удалить диету</strong></p>
+<pre><code>DELETE /manufactory/diets/{id}
 </code></pre>
-<p>GET /manufactory/egg/performance/breed/</p>
-<pre><code>
-Request URL ```http://127.0.0.1:8000/manufactory/egg/performance/breed/?weight=2&amp;age=1&amp;breed_id=1```
-
+<p>22 <strong>Производительность по породам</strong></p>
+<pre><code>GET /manufactory/egg/performance/breed/
 </code></pre>
-<p>{
-  "eggs_per_chicken": 25
-}</p>
-<pre><code>
-#### Employees
-23 GET/POST
+<p>Request URL <code>http://127.0.0.1:8000/manufactory/egg/performance/breed/?weight=2&amp;age=1&amp;breed_id=1</code></p>
+<pre><code>{
+  &quot;eggs_per_chicken&quot;: 25
+}
 </code></pre>
-<p>METHOD /manufactory/employees</p>
-<pre><code>
+<h4 id="employees">Employees</h4>
+<p>23 GET/POST</p>
+<pre><code>METHOD /manufactory/employees
 </code></pre>
-<p>[
+<pre><code>[
   {
-    "passport": "P1234567",
-    "first_name": "John",
-    "second_name": "Doe",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P1234567&quot;,
+    &quot;first_name&quot;: &quot;John&quot;,
+    &quot;second_name&quot;: &quot;Doe&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C111",
-        "workshop": {
-          "id": 1,
-          "title": "Workshop A",
-          "capacity": 50
+        &quot;cell_code&quot;: &quot;C111&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 1,
+          &quot;title&quot;: &quot;Workshop A&quot;,
+          &quot;capacity&quot;: 50
         },
-        "row": 1,
-        "column": 1
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 1
       },
       {
-        "cell_code": "C211",
-        "workshop": {
-          "id": 2,
-          "title": "Workshop B",
-          "capacity": 60
+        &quot;cell_code&quot;: &quot;C211&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 2,
+          &quot;title&quot;: &quot;Workshop B&quot;,
+          &quot;capacity&quot;: 60
         },
-        "row": 1,
-        "column": 1
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 1
       }
     ]
   },
   {
-    "passport": "P2234567",
-    "first_name": "Jane",
-    "second_name": "Smith",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P2234567&quot;,
+    &quot;first_name&quot;: &quot;Jane&quot;,
+    &quot;second_name&quot;: &quot;Smith&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C211",
-        "workshop": {
-          "id": 2,
-          "title": "Workshop B",
-          "capacity": 60
+        &quot;cell_code&quot;: &quot;C211&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 2,
+          &quot;title&quot;: &quot;Workshop B&quot;,
+          &quot;capacity&quot;: 60
         },
-        "row": 1,
-        "column": 1
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 1
       }
     ]
   },
   {
-    "passport": "P3234567",
-    "first_name": "Alex",
-    "second_name": "Brown",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P3234567&quot;,
+    &quot;first_name&quot;: &quot;Alex&quot;,
+    &quot;second_name&quot;: &quot;Brown&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C121",
-        "workshop": {
-          "id": 1,
-          "title": "Workshop A",
-          "capacity": 50
+        &quot;cell_code&quot;: &quot;C121&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 1,
+          &quot;title&quot;: &quot;Workshop A&quot;,
+          &quot;capacity&quot;: 50
         },
-        "row": 2,
-        "column": 1
+        &quot;row&quot;: 2,
+        &quot;column&quot;: 1
       }
     ]
   },
   {
-    "passport": "P4234567",
-    "first_name": "Emily",
-    "second_name": "Davis",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P4234567&quot;,
+    &quot;first_name&quot;: &quot;Emily&quot;,
+    &quot;second_name&quot;: &quot;Davis&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C122",
-        "workshop": {
-          "id": 1,
-          "title": "Workshop A",
-          "capacity": 50
+        &quot;cell_code&quot;: &quot;C122&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 1,
+          &quot;title&quot;: &quot;Workshop A&quot;,
+          &quot;capacity&quot;: 50
         },
-        "row": 2,
-        "column": 2
+        &quot;row&quot;: 2,
+        &quot;column&quot;: 2
       }
     ]
   },
   {
-    "passport": "P5234567",
-    "first_name": "Chris",
-    "second_name": "Wilson",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P5234567&quot;,
+    &quot;first_name&quot;: &quot;Chris&quot;,
+    &quot;second_name&quot;: &quot;Wilson&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C311",
-        "workshop": {
-          "id": 3,
-          "title": "Workshop C",
-          "capacity": 70
+        &quot;cell_code&quot;: &quot;C311&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 3,
+          &quot;title&quot;: &quot;Workshop C&quot;,
+          &quot;capacity&quot;: 70
         },
-        "row": 1,
-        "column": 1
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 1
       }
     ]
   },
   {
-    "passport": "P6234567",
-    "first_name": "Pat",
-    "second_name": "Johnson",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P6234567&quot;,
+    &quot;first_name&quot;: &quot;Pat&quot;,
+    &quot;second_name&quot;: &quot;Johnson&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C322",
-        "workshop": {
-          "id": 3,
-          "title": "Workshop C",
-          "capacity": 70
+        &quot;cell_code&quot;: &quot;C322&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 3,
+          &quot;title&quot;: &quot;Workshop C&quot;,
+          &quot;capacity&quot;: 70
         },
-        "row": 2,
-        "column": 2
+        &quot;row&quot;: 2,
+        &quot;column&quot;: 2
       }
     ]
   },
   {
-    "passport": "P7234567",
-    "first_name": "Sam",
-    "second_name": "Taylor",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P7234567&quot;,
+    &quot;first_name&quot;: &quot;Sam&quot;,
+    &quot;second_name&quot;: &quot;Taylor&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C411",
-        "workshop": {
-          "id": 4,
-          "title": "Workshop D",
-          "capacity": 80
+        &quot;cell_code&quot;: &quot;C411&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 4,
+          &quot;title&quot;: &quot;Workshop D&quot;,
+          &quot;capacity&quot;: 80
         },
-        "row": 1,
-        "column": 1
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 1
       }
     ]
   },
   {
-    "passport": "P8234567",
-    "first_name": "Morgan",
-    "second_name": "Lee",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P8234567&quot;,
+    &quot;first_name&quot;: &quot;Morgan&quot;,
+    &quot;second_name&quot;: &quot;Lee&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C412",
-        "workshop": {
-          "id": 4,
-          "title": "Workshop D",
-          "capacity": 80
+        &quot;cell_code&quot;: &quot;C412&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 4,
+          &quot;title&quot;: &quot;Workshop D&quot;,
+          &quot;capacity&quot;: 80
         },
-        "row": 1,
-        "column": 2
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 2
       }
     ]
   },
   {
-    "passport": "P9234567",
-    "first_name": "Taylor",
-    "second_name": "Kim",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P9234567&quot;,
+    &quot;first_name&quot;: &quot;Taylor&quot;,
+    &quot;second_name&quot;: &quot;Kim&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C511",
-        "workshop": {
-          "id": 5,
-          "title": "Workshop E",
-          "capacity": 90
+        &quot;cell_code&quot;: &quot;C511&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 5,
+          &quot;title&quot;: &quot;Workshop E&quot;,
+          &quot;capacity&quot;: 90
         },
-        "row": 1,
-        "column": 1
+        &quot;row&quot;: 1,
+        &quot;column&quot;: 1
       }
     ]
   },
   {
-    "passport": "P1034567",
-    "first_name": "Jordan",
-    "second_name": "Miller",
-    "patronymic": "John",
-    "responsible_cells": [
+    &quot;passport&quot;: &quot;P1034567&quot;,
+    &quot;first_name&quot;: &quot;Jordan&quot;,
+    &quot;second_name&quot;: &quot;Miller&quot;,
+    &quot;patronymic&quot;: &quot;John&quot;,
+    &quot;responsible_cells&quot;: [
       {
-        "cell_code": "C521",
-        "workshop": {
-          "id": 5,
-          "title": "Workshop E",
-          "capacity": 90
+        &quot;cell_code&quot;: &quot;C521&quot;,
+        &quot;workshop&quot;: {
+          &quot;id&quot;: 5,
+          &quot;title&quot;: &quot;Workshop E&quot;,
+          &quot;capacity&quot;: 90
         },
-        "row": 2,
-        "column": 1
+        &quot;row&quot;: 2,
+        &quot;column&quot;: 1
       }
     ]
   }
-]</p>
-<pre><code>
-24 CRUD
-
+]
 </code></pre>
-<p>METHOD /manufactory/employees/{id}</p>
-<pre><code>
-
-#### Responsible Employees CRUD's
-
-25 GET/POST
+<p>24 CRUD</p>
+<pre><code>METHOD /manufactory/employees/{id}
 </code></pre>
-<p>METHOD /manufactory/employees/cells</p>
-<pre><code>
-26 CRUD
+<h4 id="responsible-employees-cruds">Responsible Employees CRUD's</h4>
+<p>25 GET/POST</p>
+<pre><code>METHOD /manufactory/employees/cells
 </code></pre>
-<p>METHOD /manufactory/employees/cells/{id}</p>
-<pre><code>
-#### Employees contracts CRUD's
-27 GET/POST
+<p>26 CRUD</p>
+<pre><code>METHOD /manufactory/employees/cells/{id}
 </code></pre>
-<p>METHOD /manufactory/employees/contracts/{id}</p>
-<pre><code>
-28 CRUD
+<h4 id="employees-contracts-cruds">Employees contracts CRUD's</h4>
+<p>27 GET/POST</p>
+<pre><code>METHOD /manufactory/employees/contracts/{id}
 </code></pre>
-<p>METHOD /manufactory/employees/contracts/{id}</p>
-<pre><code>
-29 Получить отчёт за прошедший месяц
+<p>28 CRUD</p>
+<pre><code>METHOD /manufactory/employees/contracts/{id}
 </code></pre>
-<p>GET /manufactory/reports</p>
-<pre><code>
+<p>29 Получить отчёт за прошедший месяц</p>
+<pre><code>GET /manufactory/reports
 </code></pre>
-<p>{
-  "last_month_data": [
+<pre><code>{
+  &quot;last_month_data&quot;: [
     {
-      "workshop": "Workshop A",
-      "breed_name": "Leghorn",
-      "chicken_count": 2,
-      "total_eggs": 50,
-      "avg_performance": 25
+      &quot;workshop&quot;: &quot;Workshop A&quot;,
+      &quot;breed_name&quot;: &quot;Leghorn&quot;,
+      &quot;chicken_count&quot;: 2,
+      &quot;total_eggs&quot;: 50,
+      &quot;avg_performance&quot;: 25
     },
     {
-      "workshop": "Workshop A",
-      "breed_name": "Rhode Island",
-      "chicken_count": 1,
-      "total_eggs": 26,
-      "avg_performance": 26
+      &quot;workshop&quot;: &quot;Workshop A&quot;,
+      &quot;breed_name&quot;: &quot;Rhode Island&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 26,
+      &quot;avg_performance&quot;: 26
     },
     {
-      "workshop": "Workshop A",
-      "breed_name": "Sussex",
-      "chicken_count": 1,
-      "total_eggs": 22,
-      "avg_performance": 22
+      &quot;workshop&quot;: &quot;Workshop A&quot;,
+      &quot;breed_name&quot;: &quot;Sussex&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 22,
+      &quot;avg_performance&quot;: 22
     },
     {
-      "workshop": "Workshop B",
-      "breed_name": "Australorp",
-      "chicken_count": 1,
-      "total_eggs": 24,
-      "avg_performance": 24
+      &quot;workshop&quot;: &quot;Workshop B&quot;,
+      &quot;breed_name&quot;: &quot;Australorp&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 24,
+      &quot;avg_performance&quot;: 24
     },
     {
-      "workshop": "Workshop C",
-      "breed_name": "Orpington",
-      "chicken_count": 1,
-      "total_eggs": 20,
-      "avg_performance": 20
+      &quot;workshop&quot;: &quot;Workshop C&quot;,
+      &quot;breed_name&quot;: &quot;Orpington&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 20,
+      &quot;avg_performance&quot;: 20
     },
     {
-      "workshop": "Workshop C",
-      "breed_name": "Plymouth Rock",
-      "chicken_count": 1,
-      "total_eggs": 23,
-      "avg_performance": 23
+      &quot;workshop&quot;: &quot;Workshop C&quot;,
+      &quot;breed_name&quot;: &quot;Plymouth Rock&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 23,
+      &quot;avg_performance&quot;: 23
     },
     {
-      "workshop": "Workshop D",
-      "breed_name": "Brahma",
-      "chicken_count": 1,
-      "total_eggs": 19,
-      "avg_performance": 19
+      &quot;workshop&quot;: &quot;Workshop D&quot;,
+      &quot;breed_name&quot;: &quot;Brahma&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 19,
+      &quot;avg_performance&quot;: 19
     },
     {
-      "workshop": "Workshop D",
-      "breed_name": "Wyandotte",
-      "chicken_count": 1,
-      "total_eggs": 21,
-      "avg_performance": 21
+      &quot;workshop&quot;: &quot;Workshop D&quot;,
+      &quot;breed_name&quot;: &quot;Wyandotte&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 21,
+      &quot;avg_performance&quot;: 21
     },
     {
-      "workshop": "Workshop E",
-      "breed_name": "Cochin",
-      "chicken_count": 1,
-      "total_eggs": 22,
-      "avg_performance": 22
+      &quot;workshop&quot;: &quot;Workshop E&quot;,
+      &quot;breed_name&quot;: &quot;Cochin&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 22,
+      &quot;avg_performance&quot;: 22
     },
     {
-      "workshop": "Workshop E",
-      "breed_name": "Silkie",
-      "chicken_count": 1,
-      "total_eggs": 18,
-      "avg_performance": 18
+      &quot;workshop&quot;: &quot;Workshop E&quot;,
+      &quot;breed_name&quot;: &quot;Silkie&quot;,
+      &quot;chicken_count&quot;: 1,
+      &quot;total_eggs&quot;: 18,
+      &quot;avg_performance&quot;: 18
     }
   ],
-  "overall_stats": {
-    "total_chickens": 11,
-    "total_eggs": 245
+  &quot;overall_stats&quot;: {
+    &quot;total_chickens&quot;: 11,
+    &quot;total_eggs&quot;: 245
   }
-}</p>
-<pre><code>
-30 В каком цехе наибольшее количество птиц определённой породы
+}
 </code></pre>
-<p>GET /manufactory/workshop/breeds</p>
-<pre><code>
-31 Количество кур каждой породы в каждом цехе
+<p>30 В каком цехе наибольшее количество птиц определённой породы</p>
+<pre><code>GET /manufactory/workshop/breeds
 </code></pre>
-<p>GET /manufactory/workshop/breeds/count</p>
-<pre><code>
-### Auth
-32 **Получить токен юзера по паролю и никнейму**
+<p>31 Количество кур каждой породы в каждом цехе</p>
+<pre><code>GET /manufactory/workshop/breeds/count
 </code></pre>
-<p>POST /auth/token/login</p>
-<pre><code>33 **Вывести информацию о пользователе**
+<h3 id="auth">Auth</h3>
+<p>32 <strong>Получить токен юзера по паролю и никнейму</strong></p>
+<pre><code>POST /auth/token/login
 </code></pre>
-<p>GET /auth/users/me</p>
-<pre><code>34 **Зарегистрировать пользователя**
+<p>33 <strong>Вывести информацию о пользователе</strong></p>
+<pre><code>GET /auth/users/me
 </code></pre>
-<p>POST /auth/users
-```</p>
+<p>34 <strong>Зарегистрировать пользователя</strong></p>
+<pre><code>POST /auth/users
+</code></pre>
 
 
 
