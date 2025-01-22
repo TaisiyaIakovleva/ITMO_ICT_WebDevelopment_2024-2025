@@ -12,6 +12,8 @@
         <link rel="prev" href="../../lr2/lr2/">
       
       
+        <link rel="next" href="../../prac3/prac3/">
+      
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
@@ -464,44 +466,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#employees" class="md-nav__link">
-    <span class="md-ellipsis">
-      Employees
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#responsible-employees-cruds" class="md-nav__link">
-    <span class="md-ellipsis">
-      Responsible Employees CRUD's
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#employees-contracts-cruds" class="md-nav__link">
-    <span class="md-ellipsis">
-      Employees contracts CRUD's
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#auth" class="md-nav__link">
-    <span class="md-ellipsis">
-      Auth
-    </span>
-  </a>
   
 </li>
         
@@ -514,6 +480,46 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prac3/prac3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pracrical
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr4/lr4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab4
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -600,44 +606,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#employees" class="md-nav__link">
-    <span class="md-ellipsis">
-      Employees
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#responsible-employees-cruds" class="md-nav__link">
-    <span class="md-ellipsis">
-      Responsible Employees CRUD's
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#employees-contracts-cruds" class="md-nav__link">
-    <span class="md-ellipsis">
-      Employees contracts CRUD's
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#auth" class="md-nav__link">
-    <span class="md-ellipsis">
-      Auth
-    </span>
-  </a>
   
 </li>
         
@@ -676,6 +646,15 @@
 </code></pre>
 <p>4 <strong>Получить детальную информацию о породе</strong></p>
 <pre><code>GET /manufactory/breeds/{id}
+</code></pre>
+<p>Request URL <code>http://127.0.0.1:8000/manufactory/breeds/1</code></p>
+<pre><code>{
+  &quot;id&quot;: 1,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;egg_performance_avg&quot;: 4,
+  &quot;weight_avg&quot;: 5,
+  &quot;diet_number&quot;: 1
+}
 </code></pre>
 <p>5 <strong>Изменить породу</strong></p>
 <pre><code>UPDATE /manufactory/breeds/{id}
@@ -720,6 +699,17 @@
 <p>17 <strong>Добавить диету</strong></p>
 <pre><code>POST /manufactory/diets/
 </code></pre>
+<pre><code>{
+  &quot;description&quot;: &quot;newDiet&quot;,
+  &quot;season&quot;: &quot;Summer&quot;
+}
+</code></pre>
+<pre><code>{
+  &quot;id&quot;: 11,
+  &quot;description&quot;: &quot;newDiet&quot;,
+  &quot;season&quot;: &quot;Summer&quot;
+}
+</code></pre>
 <p>18 <strong>Получить информацию о диете</strong></p>
 <pre><code>GET /manufactory/diets/{id}
 </code></pre>
@@ -729,52 +719,362 @@
 <p>20 <strong>Изменить информацию о диете</strong></p>
 <pre><code>PATCH /manufactory/diets/{id}
 </code></pre>
-<p>21 <strong>Удалить диету</strong></p>
-<pre><code>DELETE /manufactory/diets/{id}
+<p>{
+  "description": "newDiet",
+  "season": "Winter"
+}</p>
+<pre><code>id = 11
+
+Request URL ```http://127.0.0.1:8000/manufactory/diets/11```
+
 </code></pre>
-<p>22 <strong>Производительность по породам</strong></p>
-<pre><code>GET /manufactory/egg/performance/breed/
+<p>{
+  "id": 11,
+  "description": "newDiet",
+  "season": "Winter"
+}</p>
+<pre><code>
+21 **Удалить диету**
 </code></pre>
-<h4 id="employees">Employees</h4>
-<p>23 GET/POST</p>
-<pre><code>METHOD /manufactory/employees
+<p>DELETE /manufactory/diets/{id}</p>
+<pre><code>22 **Производительность по породам**
 </code></pre>
-<p>24 CRUD</p>
-<pre><code>METHOD /manufactory/employees/{id}
+<p>GET /manufactory/egg/performance/breed/</p>
+<pre><code>
+Request URL ```http://127.0.0.1:8000/manufactory/egg/performance/breed/?weight=2&amp;age=1&amp;breed_id=1```
+
 </code></pre>
-<h4 id="responsible-employees-cruds">Responsible Employees CRUD's</h4>
-<p>25 GET/POST</p>
-<pre><code>METHOD /manufactory/employees/cells
+<p>{
+  "eggs_per_chicken": 25
+}</p>
+<pre><code>
+#### Employees
+23 GET/POST
 </code></pre>
-<p>26 CRUD</p>
-<pre><code>METHOD /manufactory/employees/cells/{id}
+<p>METHOD /manufactory/employees</p>
+<pre><code>
 </code></pre>
-<h4 id="employees-contracts-cruds">Employees contracts CRUD's</h4>
-<p>27 GET/POST</p>
-<pre><code>METHOD /manufactory/employees/contracts/{id}
+<p>[
+  {
+    "passport": "P1234567",
+    "first_name": "John",
+    "second_name": "Doe",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C111",
+        "workshop": {
+          "id": 1,
+          "title": "Workshop A",
+          "capacity": 50
+        },
+        "row": 1,
+        "column": 1
+      },
+      {
+        "cell_code": "C211",
+        "workshop": {
+          "id": 2,
+          "title": "Workshop B",
+          "capacity": 60
+        },
+        "row": 1,
+        "column": 1
+      }
+    ]
+  },
+  {
+    "passport": "P2234567",
+    "first_name": "Jane",
+    "second_name": "Smith",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C211",
+        "workshop": {
+          "id": 2,
+          "title": "Workshop B",
+          "capacity": 60
+        },
+        "row": 1,
+        "column": 1
+      }
+    ]
+  },
+  {
+    "passport": "P3234567",
+    "first_name": "Alex",
+    "second_name": "Brown",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C121",
+        "workshop": {
+          "id": 1,
+          "title": "Workshop A",
+          "capacity": 50
+        },
+        "row": 2,
+        "column": 1
+      }
+    ]
+  },
+  {
+    "passport": "P4234567",
+    "first_name": "Emily",
+    "second_name": "Davis",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C122",
+        "workshop": {
+          "id": 1,
+          "title": "Workshop A",
+          "capacity": 50
+        },
+        "row": 2,
+        "column": 2
+      }
+    ]
+  },
+  {
+    "passport": "P5234567",
+    "first_name": "Chris",
+    "second_name": "Wilson",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C311",
+        "workshop": {
+          "id": 3,
+          "title": "Workshop C",
+          "capacity": 70
+        },
+        "row": 1,
+        "column": 1
+      }
+    ]
+  },
+  {
+    "passport": "P6234567",
+    "first_name": "Pat",
+    "second_name": "Johnson",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C322",
+        "workshop": {
+          "id": 3,
+          "title": "Workshop C",
+          "capacity": 70
+        },
+        "row": 2,
+        "column": 2
+      }
+    ]
+  },
+  {
+    "passport": "P7234567",
+    "first_name": "Sam",
+    "second_name": "Taylor",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C411",
+        "workshop": {
+          "id": 4,
+          "title": "Workshop D",
+          "capacity": 80
+        },
+        "row": 1,
+        "column": 1
+      }
+    ]
+  },
+  {
+    "passport": "P8234567",
+    "first_name": "Morgan",
+    "second_name": "Lee",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C412",
+        "workshop": {
+          "id": 4,
+          "title": "Workshop D",
+          "capacity": 80
+        },
+        "row": 1,
+        "column": 2
+      }
+    ]
+  },
+  {
+    "passport": "P9234567",
+    "first_name": "Taylor",
+    "second_name": "Kim",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C511",
+        "workshop": {
+          "id": 5,
+          "title": "Workshop E",
+          "capacity": 90
+        },
+        "row": 1,
+        "column": 1
+      }
+    ]
+  },
+  {
+    "passport": "P1034567",
+    "first_name": "Jordan",
+    "second_name": "Miller",
+    "patronymic": "John",
+    "responsible_cells": [
+      {
+        "cell_code": "C521",
+        "workshop": {
+          "id": 5,
+          "title": "Workshop E",
+          "capacity": 90
+        },
+        "row": 2,
+        "column": 1
+      }
+    ]
+  }
+]</p>
+<pre><code>
+24 CRUD
+
 </code></pre>
-<p>28 CRUD</p>
-<pre><code>METHOD /manufactory/employees/contracts/{id}
+<p>METHOD /manufactory/employees/{id}</p>
+<pre><code>
+
+#### Responsible Employees CRUD's
+
+25 GET/POST
 </code></pre>
-<p>29 Получить отчёт за прошедший месяц</p>
-<pre><code>GET /manufactory/reports
+<p>METHOD /manufactory/employees/cells</p>
+<pre><code>
+26 CRUD
 </code></pre>
-<p>30 В каком цехе наибольшее количество птиц определённой породы</p>
-<pre><code>GET /manufactory/workshop/breeds
+<p>METHOD /manufactory/employees/cells/{id}</p>
+<pre><code>
+#### Employees contracts CRUD's
+27 GET/POST
 </code></pre>
-<p>31 Количество кур каждой породы в каждом цехе</p>
-<pre><code>GET /manufactory/workshop/breeds/count
+<p>METHOD /manufactory/employees/contracts/{id}</p>
+<pre><code>
+28 CRUD
 </code></pre>
-<h3 id="auth">Auth</h3>
-<p>32 <strong>Получить токен юзера по паролю и никнейму</strong></p>
-<pre><code>POST /auth/token/login
+<p>METHOD /manufactory/employees/contracts/{id}</p>
+<pre><code>
+29 Получить отчёт за прошедший месяц
 </code></pre>
-<p>33 <strong>Вывести информацию о пользователе</strong></p>
-<pre><code>GET /auth/users/me
+<p>GET /manufactory/reports</p>
+<pre><code>
 </code></pre>
-<p>34 <strong>Зарегистрировать пользователя</strong></p>
-<pre><code>POST /auth/users
+<p>{
+  "last_month_data": [
+    {
+      "workshop": "Workshop A",
+      "breed_name": "Leghorn",
+      "chicken_count": 2,
+      "total_eggs": 50,
+      "avg_performance": 25
+    },
+    {
+      "workshop": "Workshop A",
+      "breed_name": "Rhode Island",
+      "chicken_count": 1,
+      "total_eggs": 26,
+      "avg_performance": 26
+    },
+    {
+      "workshop": "Workshop A",
+      "breed_name": "Sussex",
+      "chicken_count": 1,
+      "total_eggs": 22,
+      "avg_performance": 22
+    },
+    {
+      "workshop": "Workshop B",
+      "breed_name": "Australorp",
+      "chicken_count": 1,
+      "total_eggs": 24,
+      "avg_performance": 24
+    },
+    {
+      "workshop": "Workshop C",
+      "breed_name": "Orpington",
+      "chicken_count": 1,
+      "total_eggs": 20,
+      "avg_performance": 20
+    },
+    {
+      "workshop": "Workshop C",
+      "breed_name": "Plymouth Rock",
+      "chicken_count": 1,
+      "total_eggs": 23,
+      "avg_performance": 23
+    },
+    {
+      "workshop": "Workshop D",
+      "breed_name": "Brahma",
+      "chicken_count": 1,
+      "total_eggs": 19,
+      "avg_performance": 19
+    },
+    {
+      "workshop": "Workshop D",
+      "breed_name": "Wyandotte",
+      "chicken_count": 1,
+      "total_eggs": 21,
+      "avg_performance": 21
+    },
+    {
+      "workshop": "Workshop E",
+      "breed_name": "Cochin",
+      "chicken_count": 1,
+      "total_eggs": 22,
+      "avg_performance": 22
+    },
+    {
+      "workshop": "Workshop E",
+      "breed_name": "Silkie",
+      "chicken_count": 1,
+      "total_eggs": 18,
+      "avg_performance": 18
+    }
+  ],
+  "overall_stats": {
+    "total_chickens": 11,
+    "total_eggs": 245
+  }
+}</p>
+<pre><code>
+30 В каком цехе наибольшее количество птиц определённой породы
 </code></pre>
+<p>GET /manufactory/workshop/breeds</p>
+<pre><code>
+31 Количество кур каждой породы в каждом цехе
+</code></pre>
+<p>GET /manufactory/workshop/breeds/count</p>
+<pre><code>
+### Auth
+32 **Получить токен юзера по паролю и никнейму**
+</code></pre>
+<p>POST /auth/token/login</p>
+<pre><code>33 **Вывести информацию о пользователе**
+</code></pre>
+<p>GET /auth/users/me</p>
+<pre><code>34 **Зарегистрировать пользователя**
+</code></pre>
+<p>POST /auth/users
+```</p>
 
 
 
